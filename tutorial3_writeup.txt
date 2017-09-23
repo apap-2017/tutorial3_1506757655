@@ -1,0 +1,21 @@
+a.Ringkasan, pada tutorial ini saya mempelajari bagaimana memisahkan model yang dapat menyimpan student dengan atributnya npm, nama, dan gpa. Selain itu saya juga mempelajari membuat dan menggunakan service sebagai penghubung antara model dan controller. Service disini merupakan interface yang memiliki method-method untuk mengolah data dari class Student.
+
+b1.localhost:8080/student/add?npm=12345&name=chanek&gpa=3.43	
+	Hasil: data berhasil ditambahkan
+b2. localhost:8080/student/add?npm=12345&name=chanek
+	Hasil: error, karena data tidak tersimpan dan data yang ingin disimpan tidak memiliki gpa yang tidak bleh kosong
+b3. localhost:8080/student/add?npm=12345&name=chanek&gpa=3.43 lalu buka localhost:8080/student/view?npm=12345
+	Hasil: Data muncul karena npm 12345 sudah ditambahkan
+b4. Coba matikan program dan jalankan kembali serta buka localhost:8080/student/view?npm=12345
+	Hasil: Data tidak muncul karena tidak tersimpan pada local dan data tidak tersimpan pada database sehingga tidak ada data yang dapat dimunculkan
+b5. localhost:8080/student/add?npm=12345&name=chanek&gpa=3.43 lalu buka localhost:8080/student/viewall
+	Hasil: muncul, karena data sudah dimasukkan dan tersimpan pada local
+b6. Coba tambahkan data Student lainnya dengan NPM yang berbeda, lalu buka localhost:8080/student/viewall
+	Hasil: muncul 2 buah data ketika dilakukan add NPM yang berbeda pada pertama kali. Dan setelah dilakukan add lagi, muncul 3 buah data.
+
+Latihan
+c.Method selectStudent dipanggil untuk mencari student dengan looping sebanyak jumlah objek pada listStudent. Untuk setiap objek student pada list dicek apakah objek tersebut memiliki npm yang sama dengan yang dicari. Apabila npm objek student sama dengan yang kita cari, maka akan mengembalikan objek student. Sedangkan apabila tidak ditemukan, makan akan mengembalikan null.
+
+d. Method deleteStudent dengan parameter npm dibuat di StudentService. Kemudian pada InMemoryStudentService dilakukan override method untuk deleteStudent yang bertujuan untuk menghapus object student pada list dengan npm yang sesuai dengan yang ingin kita hapus. Apabila tidak ditemukan mmaka tidak akan melakukan apa-apa, sebaliknya apabila ditemukan maka student akan dihapus dari list.
+
+Kemudian pada controller dilakukan pencarian npm yang sesuai pada path dan apabila sesuai dengan path maka controller akan memanggil method deleteStudent. Apabila student berhasil dihapus maka akan mereturn delete.html, sedangkan apabila gagal maka akan mereturn error.html
